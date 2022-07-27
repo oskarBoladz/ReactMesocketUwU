@@ -1,0 +1,122 @@
+/*NickBar()
+ChatWindow()
+UserInput()*/
+
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono&display=swap');
+
+:root{
+  --backgroundColor:#FAEBD7;
+  --mainColor:#404040;
+  --shadeMainColor:#5e5c5c;
+}
+
+body{
+  background-color: var(--backgroundColor);
+  margin:0;
+  padding: 0;
+}
+*{
+  font-family: 'Space Mono', monospace;
+}
+
+#allPage{
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100vh;
+  background-color:ithernal;
+  display: grid;
+  grid-template-columns: 3fr 1.1fr 1.1fr 6fr 1.2fr 3fr;
+  grid-template-rows: 1fr 8fr 1.2fr 2fr 0.5fr;
+  grid-gap: 10px;
+
+}
+#NickBar, #ChatWindow, #UserInput{
+  background-color: var(--mainColor);
+}
+#NickBar{
+  grid-column: 2/4;
+  grid-row: 2;
+  border-radius: 20px;
+}
+#ChatWindow{
+  grid-column: 4;
+  grid-row: 2;
+  border-radius: 20px;
+
+  padding: 10px;
+    max-height:800px;
+    overflow-x: auto;
+}
+#UserInput{
+  grid-column: 4;
+  grid-row: 3;
+  border-radius: 20px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+#UserInput input{
+  height:44%;
+  width: 75%;
+  border-radius: 20px;
+  border:1px solid var(--backgroundColor);
+  color: var(--backgroundColor);
+  padding-left:10px;
+  font-size: 20px;
+    font-weight: 600;
+  color: var(--mainColor);
+}
+input:focus{
+  border:none;
+  text-decoration: none;
+  outline:none;
+}
+#UserInput button{
+  height:50%;
+  width: 16%;
+  border-radius: 20px;
+  border:1px solid var(--backgroundColor);
+  color: var(--backgroundColor);
+  font-weight: 700;
+  font-size: 20px;
+  color: var(--mainColor);
+}
+#Footer{
+  grid-column: 4;
+  grid-row: 5;
+  background-color: var(--mainColor);
+  border-radius: 20px 20px 0 0;
+  line-height: 4vh;
+  text-align: center;
+}
+.myMessage{
+  margin-left: auto;
+  text-align: left;
+  height: auto;
+  width: fit-content;
+  max-width: 80%;
+  background-color: var(--backgroundColor);
+  padding: 6px;
+  font-size: 26px;
+  border-radius: 20px;
+  
+    word-wrap: break-word;
+    margin-bottom: 10px;
+}
+.hisMessage{
+
+  text-align: left;
+  height: auto;
+  width: fit-content;
+  max-width: 80%;
+  background-color: var(--backgroundColor);
+  padding: 6px;
+  font-size: 26px;
+  border-radius: 20px;
+  word-wrap: break-word;
+  margin-bottom: 10px;
+}
+
+
+
