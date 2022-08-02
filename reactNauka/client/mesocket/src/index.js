@@ -18,7 +18,7 @@ let userData={
 
 while(true){
   let nick=prompt("nick: ")
-  if(nick.length<=12){
+  if(nick.length<=13){
     userData.nick=nick;
     break;
   }
@@ -33,7 +33,8 @@ while(true){
 }
 
 
-socket.emit('users',userData.nick)
+socket.emit('userIn',userData.nick)
+
 function AllPage(){
 
 const [messageAll, setThingsArray] = React.useState([])
@@ -44,22 +45,18 @@ socket.on('users',data=>{
 })
 
 function BtnSend(){
-  console.log("huj")
+
   if(document.getElementById('mesage').value!=""){
     socket.emit('message',{message:document.getElementById('mesage').value,nick:userData.nick})
-    console.log("huj2")
     document.getElementById('mesage').value=""
   }
 }
 
 function addMessage(nickk,textt,clases){
-  console.log("messageQWE")
   setThingsArray(prevState =>[...prevState,{nick:nickk,text:textt,clases:clases}])//https://www.youtube.com/watch?v=bMknfKXIFA8&t=2961s // 6:09:46
-  console.log(messageAll)
 }
 
 socket.once('message',data=>{
-  console.log("huj3")
   let clases="hisMessage"
   if(data.nick==userData.nick){
     clases="myMessage"
@@ -100,7 +97,7 @@ const msg=(
 //<div class="hisMessage"><i>{thing.nick}</i><br/>{thing.text}</div>
 const AllMessageSetSet = messageAll.map(thing => (
 <div key={messageAll.length} className={thing.clases}>
-{thing.nick}<br/>
+<i>{thing.nick}</i><br/>
 {thing.text}
 </div>
 )
@@ -110,9 +107,18 @@ function AllMessageSet(){
   return <div>{AllMessageSetSet}</div>
 }
 
+function UserBoxWindow(){
+  return(
+  //<div class="UserBoxWindow" key={nick}><h1>{nick}</h1></div>
+  <div class="UserBoxWindow">1234567890123</div>
+  )
+}
+
 function NickBar(){
   return(
-    <div id="NickBar"><h1>123456789012</h1></div>
+    <div id="NickBar">
+      <UserBoxWindow />
+    </div>
   )
 }
 function ChatWindow(){
@@ -132,7 +138,7 @@ function UserInput(){
 function Footer(){
   return(
   <div id="Footer">
-  Just footer
+  Just footer with no data in it ¯\_(ツ)_/¯
   </div>
     )
 }
@@ -152,3 +158,9 @@ function Footer(){
 
 
 root.render(<AllPage />)
+
+
+//huj nie działa before the unload react żeby nick wykreślić
+function aht(){
+  socket.emit("userOut",userData.nick)
+}

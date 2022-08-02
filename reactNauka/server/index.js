@@ -8,6 +8,8 @@ app.use(cors());
 
 const server = http.createServer(app)
 
+let AllUsersList=[]
+
 const io = new Server(server,{
     cors:{
         orygin:"http://localhost:3000",
@@ -17,13 +19,27 @@ const io = new Server(server,{
 
 io.on("connection" ,(socket)=>{
     console.log("dol")
-
+//emit all users list
     socket.on('message',(message)=>{
         io.emit('message',message)
-        console.log("shit")
     })
-    socket.on('users',(data)=>{
-        io.sockets.emit('users',data)
+
+
+    socket.on('userIn',(data)=>{
+        //io.sockets.emit('users',data)
+        AllUsersList.push(data)
+        console.log(data)
+    })
+    socket.on('userOut',(data)=>{
+        //io.sockets.emit('users',data)
+        console.log(data)
+        for( var i = 0; i < AllUsersList.length; i++){ 
+            if ( AllUsersList[i]==data) { 
+                AllUsersList.splice(i, 1); 
+            }
+        }
+        console.log(data)
+        io.sockets.emit("users",AllUsersList)
     })
 
 })

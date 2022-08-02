@@ -97,7 +97,7 @@ input:focus{
   width: fit-content;
   max-width: 80%;
   background-color: var(--backgroundColor);
-  padding: 6px;
+  padding: 6px 10px;
   font-size: 26px;
   border-radius: 20px;
   
@@ -112,11 +112,24 @@ input:focus{
   max-width: 80%;
   background-color: var(--backgroundColor);
   padding: 6px;
-  font-size: 26px;
+  font-size: 24px;
   border-radius: 20px;
   word-wrap: break-word;
   margin-bottom: 10px;
 }
+.hisMessage i,.myMessage i{
+  font-size: 20px;
+  text-decoration:underline;
+}
 
-
+.UserBoxWindow{
+  background-color:var(--backgroundColor);
+  width: 95%;
+  height: 60px;
+  font-size: 30px;
+  margin:10px auto;
+  border-radius: 20px;
+  padding-left: 10px;
+  line-height: 60px;
+}
 
