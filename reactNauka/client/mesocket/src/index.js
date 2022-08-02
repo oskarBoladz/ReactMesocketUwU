@@ -11,16 +11,10 @@ const socket = io.connect('http://localhost:3001');
 const container = document.getElementById('root')
 const root= createRoot(container)
 
-
-
-
 let userData={
   nick:null,
   room:null
 }
-
-function AllPage(){
-const [messageAll, setThingsArray] = React.useState([])
 
 while(true){
   let nick=prompt("nick: ")
@@ -38,27 +32,40 @@ while(true){
   }
 }
 
+
 socket.emit('users',userData.nick)
+function AllPage(){
+
+const [messageAll, setThingsArray] = React.useState([])
+
 
 socket.on('users',data=>{
   console.log(data)
 })
 
 function BtnSend(){
+  console.log("huj")
   if(document.getElementById('mesage').value!=""){
     socket.emit('message',{message:document.getElementById('mesage').value,nick:userData.nick})
+    console.log("huj2")
     document.getElementById('mesage').value=""
   }
 }
 
-function addMessage(nickk,textt){
-  
-  setThingsArray()//https://www.youtube.com/watch?v=bMknfKXIFA8&t=2961s // 6:09:46
+function addMessage(nickk,textt,clases){
+  console.log("messageQWE")
+  setThingsArray(prevState =>[...prevState,{nick:nickk,text:textt,clases:clases}])//https://www.youtube.com/watch?v=bMknfKXIFA8&t=2961s // 6:09:46
+  console.log(messageAll)
 }
 
-socket.on('message',data=>{
-  addMessage(data.nick,data.message)
-  console.log(messageAll)
+socket.once('message',data=>{
+  console.log("huj3")
+  let clases="hisMessage"
+  if(data.nick==userData.nick){
+    clases="myMessage"
+  }
+  addMessage(data.nick,data.message,clases)
+
 /*
 if(data.nick!=userData.nick){
   NewMessage(data.nick,data.message,"hisMessage")
@@ -91,7 +98,14 @@ const msg=(
     
 })
 //<div class="hisMessage"><i>{thing.nick}</i><br/>{thing.text}</div>
-const AllMessageSetSet = messageAll.map(thing => ({thing}))
+const AllMessageSetSet = messageAll.map(thing => (
+<div key={messageAll.length} className={thing.clases}>
+{thing.nick}<br/>
+{thing.text}
+</div>
+)
+)
+
 function AllMessageSet(){
   return <div>{AllMessageSetSet}</div>
 }

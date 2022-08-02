@@ -20,6 +20,7 @@ io.on("connection" ,(socket)=>{
 
     socket.on('message',(message)=>{
         io.emit('message',message)
+        console.log("shit")
     })
     socket.on('users',(data)=>{
         io.sockets.emit('users',data)
