@@ -1,5 +1,7 @@
 import React from 'react';
 import {createRoot} from "react-dom/client"
+import {useEffect, useState} from 'react';
+
 import './index.css'
 
 import io from 'socket.io-client'
@@ -15,6 +17,9 @@ let userData={
   nick:null,
   room:null
 }
+
+let alUsers=[]
+
 
 while(true){
   let nick=prompt("nick: ")
@@ -40,9 +45,7 @@ function AllPage(){
 const [messageAll, setThingsArray] = React.useState([])
 
 
-socket.on('users',data=>{
-  console.log(data)
-})
+
 
 function BtnSend(){
 
@@ -57,11 +60,11 @@ function addMessage(nickk,textt,clases){
 }
 
 socket.once('message',data=>{
-  let clases="hisMessage"
+  let clas="hisMessage"
   if(data.nick==userData.nick){
-    clases="myMessage"
+    clas="myMessage"
   }
-  addMessage(data.nick,data.message,clases)
+  addMessage(data.nick,data.message,clas)
 
 /*
 if(data.nick!=userData.nick){
@@ -80,7 +83,7 @@ function NewMessage(user,text,className){
     console.log(user,text)
 
 const msg=(
-      <div class={className}>
+      <div className={className}>
         <i>{user}</i><br/>
         {text}
       </div>
@@ -96,13 +99,13 @@ const msg=(
 })
 //<div class="hisMessage"><i>{thing.nick}</i><br/>{thing.text}</div>
 const AllMessageSetSet = messageAll.map(thing => (
-<div key={messageAll.length} className={thing.clases}>
+<div key={new Date()} className={thing.clases}>
 <i>{thing.nick}</i><br/>
 {thing.text}
 </div>
 )
 )
-
+// tam do gury mimo że jest nowa data to i tak sie pierdoli to problem z on zmieniłam na once ale dalej w rekcie sie pierdoli
 function AllMessageSet(){
   return <div>{AllMessageSetSet}</div>
 }
@@ -145,6 +148,31 @@ function Footer(){
 
 
 
+// const UseOnPageLeave = (handler) => {
+//   useEffect(() => {
+//     window.onbeforeunload = () => handler();
+
+//     window.addEventListener('beforeunload', (event) => {
+//       handler();
+//     });
+
+//     return () => {
+//       handler();
+//       document.removeEventListener('beforeunload', handler);
+//     };
+//   });
+// };
+
+socket.on('updateUserList',data=>{
+  alUsers=data//tu daje pierdolenie o dodawaniu użytkownikuw z boku ale bez{...} mam nadzieje że bede wiedzdiał o co mi chodziło
+  console.log(alUsers)
+})
+
+socket.on('ptw',(data)=>{
+  if(data=="data"){
+    socket.emit('userIn',userData.nick)
+  }
+})
 
   return(
   <div id="allPage">
@@ -161,6 +189,6 @@ root.render(<AllPage />)
 
 
 //huj nie działa before the unload react żeby nick wykreślić
-function aht(){
-  socket.emit("userOut",userData.nick)
-}
+
+
+//npm start // jak by to wyjebał i musiał kiedyś wrucić xd // start nie kurwa run run jest dla serweda 

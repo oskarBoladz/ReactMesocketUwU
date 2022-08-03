@@ -9,7 +9,7 @@ app.use(cors());
 const server = http.createServer(app)
 
 let AllUsersList=[]
-
+let NusL=[]
 const io = new Server(server,{
     cors:{
         orygin:"http://localhost:3000",
@@ -24,23 +24,22 @@ io.on("connection" ,(socket)=>{
         io.emit('message',message)
     })
 
-
+//npm run devStart w /server żeby to jebane guwno odpalić //sudo npm install -g nodemon --unsafe-perm//
+//a na końcu komenda jak by kiedy indeziej nie działało 
     socket.on('userIn',(data)=>{
         //io.sockets.emit('users',data)
         AllUsersList.push(data)
-        console.log(data)
+        io.emit('updateUserList',AllUsersList)
+        console.log(data , AllUsersList)
     })
-    socket.on('userOut',(data)=>{
-        //io.sockets.emit('users',data)
-        console.log(data)
-        for( var i = 0; i < AllUsersList.length; i++){ 
-            if ( AllUsersList[i]==data) { 
-                AllUsersList.splice(i, 1); 
-            }
-        }
-        console.log(data)
-        io.sockets.emit("users",AllUsersList)
+    
+    socket.on("disconnect",()=>{
+        
+        AllUsersList.length=0
+        io.emit('ptw',"data")
+        
     })
+
 
 })
 
