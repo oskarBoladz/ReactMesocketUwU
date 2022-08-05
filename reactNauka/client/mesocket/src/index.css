@@ -122,7 +122,7 @@ input:focus{
   text-decoration:underline;
 }
 
-.UserBoxWindow{
+.UserBoxWindowT{
   background-color:var(--backgroundColor);
   width: 95%;
   height: 60px;

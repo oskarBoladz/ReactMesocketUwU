@@ -21,16 +21,19 @@ io.on("connection" ,(socket)=>{
     console.log("dol")
 //emit all users list
     socket.on('message',(message)=>{
+        
         io.emit('message',message)
+        console.log(message)
     })
 
 //npm run devStart w /server żeby to jebane guwno odpalić //sudo npm install -g nodemon --unsafe-perm//
 //a na końcu komenda jak by kiedy indeziej nie działało 
     socket.on('userIn',(data)=>{
         //io.sockets.emit('users',data)
-        AllUsersList.push(data)
+        if(!(AllUsersList.some(x => x==data))){
+        AllUsersList.push(data)}
         io.emit('updateUserList',AllUsersList)
-        console.log(data , AllUsersList)
+        //console.log(data , AllUsersList) // w huj ważne
     })
     
     socket.on("disconnect",()=>{

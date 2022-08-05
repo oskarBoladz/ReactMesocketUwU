@@ -20,6 +20,7 @@ let userData={
 
 let alUsers=[]
 
+let pmes=""
 
 while(true){
   let nick=prompt("nick: ")
@@ -44,28 +45,33 @@ function AllPage(){
 
 const [messageAll, setThingsArray] = React.useState([])
 
-
+const [usersAllbox, setUsers]=React.useState([])
 
 
 function BtnSend(){
 
   if(document.getElementById('mesage').value!=""){
-    socket.emit('message',{message:document.getElementById('mesage').value,nick:userData.nick})
+    socket.emit('message',{message:document.getElementById('mesage').value,nick:userData.nick,dateS:userData.nick+(new Date())})
     document.getElementById('mesage').value=""
   }
 }
 
 function addMessage(nickk,textt,clases){
-  setThingsArray(prevState =>[...prevState,{nick:nickk,text:textt,clases:clases}])//https://www.youtube.com/watch?v=bMknfKXIFA8&t=2961s // 6:09:46
+  console.log("karaczan")
+  setThingsArray(prevState =>[...prevState,{nick:nickk,text:textt,clases:clases,key:nickk+" "+(new Date())}])//https://www.youtube.com/watch?v=bMknfKXIFA8&t=2961s // 6:09:46
 }
 
-socket.once('message',data=>{
+socket.on('message',(data)=>{//once
+  if(!(pmes==data.dateS)){
   let clas="hisMessage"
   if(data.nick==userData.nick){
     clas="myMessage"
   }
+  console.log(data)
   addMessage(data.nick,data.message,clas)
-
+}
+pmes=data.dateS
+})
 /*
 if(data.nick!=userData.nick){
   NewMessage(data.nick,data.message,"hisMessage")
@@ -96,10 +102,10 @@ const msg=(
     console.log(user,text)
   }*/
     
-})
+
 //<div class="hisMessage"><i>{thing.nick}</i><br/>{thing.text}</div>
 const AllMessageSetSet = messageAll.map(thing => (
-<div key={new Date()} className={thing.clases}>
+<div key={thing.key} className={thing.clases}>
 <i>{thing.nick}</i><br/>
 {thing.text}
 </div>
@@ -110,16 +116,16 @@ function AllMessageSet(){
   return <div>{AllMessageSetSet}</div>
 }
 
-function UserBoxWindow(){
-  return(
-  //<div class="UserBoxWindow" key={nick}><h1>{nick}</h1></div>
-  <div class="UserBoxWindow">1234567890123</div>
-  )
-}
+// function UserBoxWindow(){
+//   return(
+//   //<div class="UserBoxWindow" key={nick}><h1>{nick}</h1></div>
+//   <div class="UserBoxWindow">1234567890123</div>
+//   )
+// }
 
 function NickBar(){
   return(
-    <div id="NickBar">
+    <div id="NickBar" key="NickBark">
       <UserBoxWindow />
     </div>
   )
@@ -162,14 +168,24 @@ function Footer(){
 //     };
 //   });
 // };
+const AllUsersSet = usersAllbox.map(thing => (
+  <div className="UserBoxWindowT" key={thing}>{thing}</div>
+  )
+  )
 
-socket.on('updateUserList',data=>{
+function UserBoxWindow(){
+  return <div key="AllUsersSetK">{AllUsersSet}</div>
+}
+
+socket.once('updateUserList',data=>{
   alUsers=data//tu daje pierdolenie o dodawaniu użytkownikuw z boku ale bez{...} mam nadzieje że bede wiedzdiał o co mi chodziło
   console.log(alUsers)
+  setUsers(alUsers)//https://www.youtube.com/watch?v=bMknfKXIFA8&t=2961s // 6:09:46
 })
 
-socket.on('ptw',(data)=>{
+socket.once('ptw',(data)=>{
   if(data=="data"){
+    console.log("kapusta")
     socket.emit('userIn',userData.nick)
   }
 })
