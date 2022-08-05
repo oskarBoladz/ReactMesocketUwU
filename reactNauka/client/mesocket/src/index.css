@@ -38,12 +38,13 @@ body{
   grid-column: 2/4;
   grid-row: 2;
   border-radius: 20px;
+  min-width: 300px;
 }
 #ChatWindow{
   grid-column: 4;
   grid-row: 2;
   border-radius: 20px;
-
+  min-width: 400px;
   padding: 10px;
     max-height:800px;
     overflow-x: auto;

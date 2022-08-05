@@ -185,7 +185,7 @@ socket.once('updateUserList',data=>{
 
 socket.once('ptw',(data)=>{
   if(data=="data"){
-    console.log("kapusta")
+    
     socket.emit('userIn',userData.nick)
   }
 })
