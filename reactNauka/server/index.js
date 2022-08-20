@@ -12,7 +12,8 @@ let AllUsersList=[]
 let NusL=[]
 const io = new Server(server,{
     cors:{
-        orygin:"http://localhost:3000",
+        //http://localhost:3000
+        orygin:{orygin:"*"},
         methods:["GET","POST"]
     }
 })
@@ -46,7 +47,7 @@ io.on("connection" ,(socket)=>{
 
 })
 
-server.listen(process.env.PORT || 3000, ()=>{
+server.listen(process.env.PORT || 8080, ()=>{
     console.log("slucham")
 })
 
