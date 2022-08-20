@@ -205,6 +205,6 @@ root.render(<AllPage />)
 
 
 //huj nie działa before the unload react żeby nick wykreślić
-
+//npm run build i huj
 
 //npm start // jak by to wyjebał i musiał kiedyś wrucić xd // start nie kurwa run run jest dla serweda 
