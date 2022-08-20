@@ -46,9 +46,11 @@ io.on("connection" ,(socket)=>{
 
 })
 
-server.listen(3001, ()=>{
+server.listen(process.env.PORT || 3000, ()=>{
     console.log("slucham")
 })
+
+
 /*const http = require('http').createServer();
 
 
