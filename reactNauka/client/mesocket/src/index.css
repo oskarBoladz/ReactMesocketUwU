@@ -125,7 +125,7 @@ input:focus{
 
 .UserBoxWindowT{
   background-color:var(--backgroundColor);
-  width: 95%;
+  width: 90%;
   height: 60px;
   font-size: 30px;
   margin:10px auto;
