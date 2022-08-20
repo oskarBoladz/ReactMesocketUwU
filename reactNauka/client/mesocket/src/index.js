@@ -8,7 +8,8 @@ import io from 'socket.io-client'
 
 //import logo from "./likeButton.jpg"
 //import {MainContent} from "./MainContent.js"
-const socket = io.connect('http://localhost:3001');
+
+const socket = io.connect('https://whispering-eyrie-25569.herokuapp.com/');
 
 const container = document.getElementById('root')
 const root= createRoot(container)
