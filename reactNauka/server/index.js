@@ -2,7 +2,7 @@ const express =require('express');
 const app = express()
 const http = require("http");
 const { Server } = require("socket.io")
-const cors = require("cors");
+const cors = require("https://cors-anywhere.herokuapp.com/cors");
 
 app.use(cors());
 
@@ -59,7 +59,7 @@ const io = require('socket.io')(http,{
 io.on('connection',(socket)=>{
     console.log('connected')
     socket.on('message',(message)=>{
-        console.log(message) 
+        console.log(message)
         io.emit('message',message)
     })
     socket.on('users',(data)=>{
