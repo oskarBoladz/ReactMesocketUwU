@@ -4,6 +4,8 @@ const http = require("http");
 const { Server } = require("socket.io")
 const cors = require("cors");
 
+
+
 app.use(cors());
 
 const server = http.createServer(app)
@@ -47,7 +49,7 @@ io.on("connection" ,(socket)=>{
 
 })
 
-server.listen(process.env.PORT || 8080, ()=>{
+server.listen(process.env.PORT || 3000, ()=>{
     console.log("slucham")
 })
 
