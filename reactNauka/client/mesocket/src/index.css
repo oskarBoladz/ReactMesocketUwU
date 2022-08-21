@@ -48,6 +48,7 @@ body{
   padding: 10px;
     max-height:800px;
     overflow-x: auto;
+    min-width: 420px;
 }
 #UserInput{
   grid-column: 4;
@@ -104,6 +105,8 @@ input:focus{
   
     word-wrap: break-word;
     margin-bottom: 10px;
+
+    transition: max-width 1s;
 }
 .hisMessage{
 
@@ -117,6 +120,8 @@ input:focus{
   border-radius: 20px;
   word-wrap: break-word;
   margin-bottom: 10px;
+
+  transition: max-width 1s;
 }
 .hisMessage i,.myMessage i{
   font-size: 20px;
@@ -134,3 +139,12 @@ input:focus{
   line-height: 60px;
 }
 
+@media screen and (max-width:741px) {
+  
+  .myMessage , .hisMessage{
+    max-width:100%;
+    transition: max-width 1s;
+  }
+
+
+}

@@ -6,10 +6,9 @@ import './index.css'
 
 import io from 'socket.io-client'
 
-//import logo from "./likeButton.jpg"
-//import {MainContent} from "./MainContent.js"
-
-const socket = io.connect('https://whispering-eyrie-25569.herokuapp.com/');
+//import logo from "./likeButton.jpg s"
+//import {MainContent} from "./MainContent.js  http://localhost:3001"
+const socket = io.connect('https://quiet-ravine-04524.herokuapp.com/');
 
 const container = document.getElementById('root')
 const root= createRoot(container)
@@ -206,6 +205,6 @@ root.render(<AllPage />)
 
 
 //huj nie działa before the unload react żeby nick wykreślić
-//npm run build i huj
+
 
 //npm start // jak by to wyjebał i musiał kiedyś wrucić xd // start nie kurwa run run jest dla serweda 
