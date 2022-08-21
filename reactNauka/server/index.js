@@ -2,7 +2,7 @@ const express =require('express');
 const app = express()
 const http = require("http");
 const { Server } = require("socket.io")
-const cors = require("https://cors-anywhere.herokuapp.com/cors");
+const cors = require("cors");
 
 app.use(cors());
 
@@ -12,7 +12,7 @@ let AllUsersList=[]
 let NusL=[]
 const io = new Server(server,{
     cors:{
-        orygin:"http://localhost:3000",
+        orygin:"https://quiet-ravine-04524.herokuapp.com/",
         methods:["GET","POST"]
     }
 })
