@@ -6,7 +6,7 @@ import './index.css'
 
 import io from 'socket.io-client'
 
-//import logo from "./likeButton.jpg"
+//import logo from "./likeButton.jpg s"
 //import {MainContent} from "./MainContent.js  http://localhost:3001"
 const socket = io.connect('https://quiet-ravine-04524.herokuapp.com/');
 
