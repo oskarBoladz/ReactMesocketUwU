@@ -140,6 +140,7 @@ function ChatWindow(){
 function UserInput(){
   return(
   <div id="UserInput">
+    
     <input type="text" id="mesage" placeholder="message"/><button id="send" onClick={BtnSend}>Send</button>
   </div>
     )
