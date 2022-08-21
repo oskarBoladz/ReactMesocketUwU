@@ -1,3 +1,4 @@
+/*
 const express =require('express');
 const app = express()
 const http = require("http");
@@ -8,14 +9,18 @@ app.use(cors());
 
 const server = http.createServer(app)
 
-let AllUsersList=[]
-let NusL=[]
+
 const io = new Server(server,{
     cors:{
         orygin:"http://localhost:3000",
         methods:["GET","POST"]
     }
 })
+*/
+const http = require("http");
+
+let AllUsersList=[]
+let NusL=[]
 
 io.on("connection" ,(socket)=>{
     console.log("dol")
@@ -46,7 +51,7 @@ io.on("connection" ,(socket)=>{
 
 })
 
-server.listen(process.env.PORT || 3001, ()=>{
+http.listen(process.env.PORT || 3001, ()=>{
     console.log("slucham")
 })
 /*const http = require('http').createServer();
@@ -59,7 +64,7 @@ const io = require('socket.io')(http,{
 io.on('connection',(socket)=>{
     console.log('connected')
     socket.on('message',(message)=>{
-        console.log(message)
+        console.log(message) 
         io.emit('message',message)
     })
     socket.on('users',(data)=>{
