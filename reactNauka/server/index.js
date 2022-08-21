@@ -48,11 +48,8 @@ io.on("connection" ,(socket)=>{
 
 })
 
-<<<<<<< HEAD
-server.listen(process.env.PORT || 3000, ()=>{
-=======
+
 server.listen(process.env.PORT || 3001, ()=>{
->>>>>>> fab6238c552d00a6ced67182f24f6c07b0ef21f5
     console.log("slucham")
 })
 /*const http = require('http').createServer();
