@@ -7,8 +7,8 @@ import './index.css'
 import io from 'socket.io-client'
 
 //import logo from "./likeButton.jpg"
-//import {MainContent} from "./MainContent.js"
-const socket = io.connect('http://localhost:3001');
+//import {MainContent} from "./MainContent.js  http://localhost:3001"
+const socket = io.connect('https://quiet-ravine-04524.herokuapp.com/');
 
 const container = document.getElementById('root')
 const root= createRoot(container)
