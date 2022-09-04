@@ -61,6 +61,10 @@ function addMessage(nickk,textt,clases){
   setThingsArray(prevState =>[...prevState,{nick:nickk,text:textt,clases:clases,key:nickk+" "+(new Date())}])//https://www.youtube.com/watch?v=bMknfKXIFA8&t=2961s // 6:09:46
 }
 
+//const scrollToBottom = (node) => {
+//	node.scrollTop = node.scrollHeight;
+//}
+
 socket.on('message',(data)=>{//once
   if(!(pmes==data.dateS)){
   let clas="hisMessage"
@@ -69,8 +73,10 @@ socket.on('message',(data)=>{//once
   }
   console.log(data)
   addMessage(data.nick,data.message,clas)
+  
 }
 pmes=data.dateS
+//document.getElementById("alM").scrollTo(0, document. body. scrollHeight);
 })
 /*
 if(data.nick!=userData.nick){
@@ -113,7 +119,7 @@ const AllMessageSetSet = messageAll.map(thing => (
 )
 // tam do gury mimo że jest nowa data to i tak sie pierdoli to problem z on zmieniłam na once ale dalej w rekcie sie pierdoli
 function AllMessageSet(){
-  return <div>{AllMessageSetSet}</div>
+  return <div id="alM">{AllMessageSetSet}</div>
 }
 
 // function UserBoxWindow(){

@@ -49,6 +49,7 @@ body{
     max-height:800px;
     overflow-x: auto;
     min-width: 420px;
+
 }
 #UserInput{
   grid-column: 4;
@@ -92,6 +93,9 @@ input:focus{
   line-height: 4vh;
   text-align: center;
 }
+/* .alM{
+  position:absolute;
+} */
 .myMessage{
   margin-left: auto;
   text-align: left;
@@ -107,6 +111,7 @@ input:focus{
     margin-bottom: 10px;
 
     transition: max-width 1s;
+    
 }
 .hisMessage{
 
